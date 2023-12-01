@@ -1,0 +1,109 @@
+<div class="quoter-cont">
+  <div class="content">
+    <div class="band-1">&nbsp;</div>
+    <div class="form-cont">
+      <div class="titles-cont">
+        <h1>Cotiza tu seguro automotriz</h1>
+        <h2>¡Resultados instantaneos!</h2>
+      </div>
+
+      <form [formGroup]="quoteForm" (ngSubmit)="submit()">
+        <div class="selects-cont">
+          <div class="select-cont brand">
+            <label for="brand">Marca del auto</label>
+            <select
+              name="brand"
+              formControlName="brand"
+              class="form-select form-select-lg mb-3"
+              [class.error]="
+                quoteForm.get('brand')?.touched &&
+                quoteForm.get('brand')?.invalid
+              "
+              class="form-select form-select-lg mb-3"
+              (change)="getModels()"
+            >
+              <option [ngValue]="null" disabled>
+                {{ width > 320 ? "" : "Marca del auto" }}
+              </option>
+              <option *ngFor="let brand of brands" [ngValue]="brand">
+                {{ brand?.brand }}
+              </option>
+            </select>
+          </div>
+
+          <div class="select-cont">
+            <label for="model">Modelo del auto</label>
+            <select
+              name="model"
+              id="model"
+              formControlName="model"
+              class="form-select form-select-lg mb-3"
+              [class.error]="
+                quoteForm.get('model')?.touched &&
+                quoteForm.get('model')?.invalid
+              "
+            >
+              <option [ngValue]="null" disabled>
+                {{ width > 320 ? null : "Modelo del auto" }}
+              </option>
+              <option *ngFor="let model of models" [ngValue]="model">
+                {{ model.model }}
+              </option>
+            </select>
+          </div>
+
+          <div class="select-cont">
+            <label for="year">Año</label>
+            <select
+              name="year"
+              id="year"
+              formControlName="year"
+              class="form-select form-select-lg mb-3"
+              [class.error]="
+                quoteForm.get('year')?.touched && quoteForm.get('year')?.invalid
+              "
+              class="form-select form-select-lg mb-3"
+            >
+              <option [ngValue]="null" disabled>
+                {{ width > 320 ? "" : "Año" }}
+              </option>
+              <option *ngFor="let year of years">{{ year }}</option>
+            </select>
+          </div>
+
+          <div class="select-cont email">
+            <label for="email">Email</label>
+            <input
+              name="email"
+              id="email"
+              formControlName="email"
+              class="form-select form-select-lg mb-3"
+              [class.error]="
+                quoteForm.get('email')?.touched &&
+                quoteForm.get('email')?.invalid
+              "
+              placeholder="{{ width > 320 ? '' : 'Email' }}"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <button
+          [disabled]="quoteForm.invalid"
+          type="submit"
+          class="btn"
+          [ngClass]="[quoteForm.invalid ? 'btn-secondary' : 'btn-info']"
+        >
+          Cotizar
+        </button>
+      </form>
+
+      <a>Recuperar cotización</a>
+    </div>
+    <div class="band-2">
+      <p>
+        El único que toma un riesgo con el seguro automotriz es aquel que lo
+        aguanta
+      </p>
+    </div>
+  </div>
+</div>

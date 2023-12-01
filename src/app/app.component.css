@@ -1,0 +1,12 @@
+.img-content {
+  width: 100%;
+  background-color: black;
+}
+
+@media (max-width: 768px) {
+  .img-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
